@@ -3,18 +3,13 @@
     <label for="name" class="form-label">Имя:</label>
     <input #name="ngModel" type="text" class="form-control" name="name" id="name" required maxlength="15" minlength="3"
       [(ngModel)]="user.name">
-    <div class="alert alert-danger" *ngIf="name.invalid && name.dirty || name.touched">
-      <div *ngIf="name.errors?.['required']">Имя обязательно</div>
-      <div *ngIf="name.errors?.['minlength']">Имя должно содержать минимум 3 символа</div>
-    </div>
+    <div *ngIf="formErrors.name" class="alert alert-danger">{{formErrors.name}}</div>
   </div>
 
   <div class="mb-3">
     <label for="age" class="form-label">Возраст:</label>
     <input #age="ngModel" type="number" class="form-control" name="age" id="age" required [(ngModel)]="user.age">
-    <div class="alert alert-danger" *ngIf="age.invalid && age.dirty || age.touched">
-      <div *ngIf="age.errors?.['required']">Возвраст обязателен</div>
-    </div>
+    <div class="alert alert-danger" *ngIf="formErrors.age">{{formErrors.age}}</div>
   </div>
 
   <div class="mb-3">
