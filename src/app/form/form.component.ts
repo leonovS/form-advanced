@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  NgControl,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -7,15 +13,12 @@ import { FormControl, FormGroup, NgControl, Validators } from '@angular/forms';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  userForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-    ]),
+  userForm = this.fb.group({
+    name: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
 
