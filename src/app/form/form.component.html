@@ -1,14 +1,31 @@
-<form #userForm="ngForm" (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" [formGroup]="userForm">
   <div class="mb-3">
     <label for="name" class="form-label">Имя:</label>
-    <input #name="ngModel" type="text" class="form-control" name="name" id="name" required maxlength="15" minlength="3"
+    <input type="text" class="form-control" id="name" formControlName="name">
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Пароль:</label>
+    <input type="password" class="form-control" formControlName="password" id="password">
+  </div>
+
+  <div class="mb-3">
+    <button [disabled]="userForm.invalid" class="btn btn-info" type="submit">Сохранить</button>
+  </div>
+</form>
+
+
+<!-- <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Имя:</label>
+    <input type="text" class="form-control" name="name" id="name" required maxlength="15" minlength="3"
       [(ngModel)]="user.name">
     <div *ngIf="formErrors.name" class="alert alert-danger">{{formErrors.name}}</div>
   </div>
 
   <div class="mb-3">
     <label for="age" class="form-label">Возраст:</label>
-    <input #age="ngModel" type="number" class="form-control" name="age" id="age" required [(ngModel)]="user.age">
+    <input type="number" class="form-control" name="age" id="age" required [(ngModel)]="user.age">
     <div class="alert alert-danger" *ngIf="formErrors.age">{{formErrors.age}}</div>
   </div>
 
@@ -28,4 +45,4 @@
 
 <p>
   {{user | json}}
-</p>
+</p> -->
